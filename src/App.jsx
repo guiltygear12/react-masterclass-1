@@ -1,34 +1,78 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import styled, {keyframes} from "styled-components"
 
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+`;
+export const aniRotate = keyframes`
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    opacity:0
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+`;
+const Title = styled.h1`
+    color:green;
+    transition: .5s;
+    &:hover{
+      transform:rotate(-90deg)
+    }
+`;
+const Box = styled.div`
+  background-color: ${(props)=>props.bgColor};
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${aniRotate} 3s linear infinite;
+  ${Title}:hover{
+    color:white;
+    transform:rotate(180deg);
+  }
+`;
+const Circle = styled(Box)`
+  border-radius: 50%;
+`;
+const Btn = styled.button`
+  background-color:tomato;
+  color:white;
+`;
+const Input = styled.input.attrs({required:true, maxLength:10})`
+  background-color: aqua;
+`;
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Wrapper>
+      <Title>안녕하세요!</Title>
+      <Box bgColor="black">
+        1
+      </Box>
+      <Box bgColor="tomato">
+        <Title>상자</Title>
+      </Box>
+      <Circle bgColor="skyblue">
+        3
+      </Circle>
+      <Btn>
+        버튼
+      </Btn>
+      <Btn as="a" href="#none">
+        버튼2
+      </Btn>
+      <Input />
+      <Input />
+      <Input />
+      <Input />
+    </Wrapper>
   )
 }
 
